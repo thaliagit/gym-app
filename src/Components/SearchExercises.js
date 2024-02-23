@@ -1,6 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { Box, Stack, Typography, TextField, Button } from "@mui/material";
+import { fetchData } from "../utils/fetchData";
 const SearchExercises = () => {
+  const [search, setSearch] = useState("");
+  const options = {
+    method: "GET",
+    url: "https://gym-fit.p.rapidapi.com/exercises/search",
+    params: {
+      number: "50",
+      offset: "0",
+      query: search,
+    },
+    headers: {
+      "X-RapidAPI-Key": "17ed0d770bmshe142f537b2cb7b9p165f5bjsn6d1c428aff94",
+      "X-RapidAPI-Host": "gym-fit.p.rapidapi.com",
+    },
+  };
+
+  const handleSearch = async () => {
+    if (search) {
+      const exercisesData = await fetchData(options);
+      console.log(exercisesData);
+    }
+  };
   return (
     <Stack alignItems="center" justifyContent="center" mt="37px" p="20px">
       <Typography
@@ -11,7 +33,7 @@ const SearchExercises = () => {
         mb="50px"
         textAlign="center"
       >
-        Suggested Exercises You Should Know
+        Awesome Exercises You Should Know
       </Typography>
       <Box position="relative" mb="72px">
         <TextField
@@ -22,8 +44,10 @@ const SearchExercises = () => {
             borderRadius: "40px",
           }}
           height="76px"
-          value=""
-          onChange={(e) => {}}
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value.toLowerCase());
+          }}
           placeholder="Search Exercises"
           type="text"
         />
@@ -37,7 +61,9 @@ const SearchExercises = () => {
             fontSize: { lg: "20px", xs: "14px" },
             height: "56px",
             position: "absolute",
+            right: "0",
           }}
+          onClick={handleSearch}
         >
           Search
         </Button>

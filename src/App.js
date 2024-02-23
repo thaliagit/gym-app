@@ -6,6 +6,7 @@ import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import Home from "./pages/Home";
 import ExerciseDetail from "./pages/ExerciseDetail";
+import BmrCalculator from "./pages/BmrCalculator";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/exercise/:id" element={<ExerciseDetail />} />
+        <Route path="/bmrCalculator" element={<BmrCalculator />} />
       </Routes>
       <Footer />
     </Box>

@@ -39,6 +39,16 @@ const Navbar = () => {
         >
           Exercises
         </a>
+        <Link
+          to="/bmrCalculator"
+          style={{
+            textDecoration: "none",
+            color: "#3A1212",
+            borderBottom: "3px solid #FF2625",
+          }}
+        >
+          BMR Calculator
+        </Link>
       </Stack>
     </Stack>
   );
